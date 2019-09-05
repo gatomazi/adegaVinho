@@ -16,7 +16,9 @@ export class SearchPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public items: Items
-  ) {}
+  ) {
+    this.fetchData();
+  }
 
   /**
    * Perform a service for the proper items.
@@ -32,9 +34,25 @@ export class SearchPage {
     });
   }
 
-  /**
-   * Navigate to the detail page for this item.
-   */
+  async fetchData() {
+    let url = "http://localhost:8100/api";
+    let obj = {
+      q: "",
+      perPage: 10
+    };
+    const rawResponse = await fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(obj)
+    });
+
+    let response = await rawResponse;
+    console.log(response);
+  }
+
   openItem(item: Item) {
     this.navCtrl.push("VinhoDetalhePage", {
       item: item

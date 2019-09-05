@@ -2,28 +2,23 @@ import { Component } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 
-import { Settings } from "../../providers";
+import { Items } from "../../providers";
 
-/**
- * The Settings page is a simple form that syncs with a Settings provider
- * to enable the user to customize settings for the app.
- *
- */
 @IonicPage()
 @Component({
   selector: "page-settings",
   templateUrl: "settings.html"
 })
 export class SettingsPage {
-  // Our local settings object
-
   page: string = "main";
   pageTitleKey: string = "SETTINGS_TITLE";
   pageTitle: string;
 
+  exportItems: any;
+
   constructor(
     public navCtrl: NavController,
-    public settings: Settings,
+    public items: Items,
     public navParams: NavParams,
     public translate: TranslateService
   ) {}
@@ -34,6 +29,10 @@ export class SettingsPage {
     this.translate.get(this.pageTitleKey).subscribe(res => {
       this.pageTitle = res;
     });
+  }
+
+  async exportarAdega() {
+    this.items.exportItems();
   }
 
   ngOnChanges() {

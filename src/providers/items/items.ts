@@ -40,7 +40,7 @@ export class Items {
     this.setAllStorage("vinhos", this.items);
   }
 
-  async delete(item: Item) {
+  delete(item: Item) {
     this.items.splice(this.items.indexOf(item), 1);
     this.setAllStorage("vinhos", this.items);
   }
@@ -53,5 +53,9 @@ export class Items {
     return this.storage.get(key).then(vinhos => {
       return vinhos;
     });
+  }
+
+  exportItems() {
+    this.api.post("vinhos", this.items);
   }
 }
