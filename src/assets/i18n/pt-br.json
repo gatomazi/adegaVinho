@@ -8,8 +8,8 @@
   "LOGIN": "Entrar",
   "SIGNUP": "Cadastre-se",
 
-  "TAB1_TITLE": "Itens",
-  "TAB2_TITLE": "Busca",
+  "TAB1_TITLE": "Adega",
+  "TAB2_TITLE": "Explorar",
   "TAB3_TITLE": "Configurações",
 
   "MAP_TITLE": "Mapa",
@@ -49,20 +49,29 @@
   "SIGNUP_ERROR": "Não foi possível criar sua conta. Verifique seus dados e tente novamente.",
   "SIGNUP_BUTTON": "Cadastre-se",
 
-  "LIST_MASTER_TITLE": "Itens",
+  "LIST_MASTER_TITLE": "Minha adega",
 
-  "ITEM_CREATE_TITLE": "Novo Item",
+  "ITEM_CREATE_TITLE": "Novo Vinho",
   "ITEM_CREATE_CHOOSE_IMAGE": "Adicionar Imagem",
 
   "ITEM_NAME_PLACEHOLDER": "Nome",
   "ITEM_ABOUT_PLACEHOLDER": "Sobre",
+  "ITEM_SAFRA_PLACEHOLDER": "Safra",
+  "ITEM_PAIS_PLACEHOLDER": "País",
+  "ITEM_REGIAO_PLACEHOLDER": "Região",
+  "ITEM_PRODUTOR_PLACEHOLDER": "Produtor",
+  "ITEM_QTD_PLACEHOLDER": "Quantidade disponível",
+  "ITEM_TEORALC_PLACEHOLDER": "Teor alcoólico",
+  "ITEM_TIPOVINHO_PLACEHOLDER": "Tipo de vinho",
+  "ITEM_UVA_PLACEHOLDER": "Tipos de uva",
 
   "DONE_BUTTON": "Pronto",
   "CANCEL_BUTTON": "Cancelar",
   "DELETE_BUTTON": "Apagar",
+  "EDIT_BUTTON": "Editar",
 
   "CARDS_TITLE": "Social",
 
-  "SEARCH_TITLE": "Busca",
-  "SEARCH_PLACEHOLDER": "Procure um item da lista, ex: \"Donald Duck\""
+  "SEARCH_TITLE": "Explorar",
+  "SEARCH_PLACEHOLDER": "Procure um vinho da lista, ex: \"Casillero\""
 }

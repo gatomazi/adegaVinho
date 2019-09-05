@@ -1,0 +1,53 @@
+page-vinho-detalhe {
+  .item-profile {
+    width: 100%;
+    background-position: center center;
+    background-size: cover;
+    // height: 410px;
+    background-color: $corPadraoItem;
+    margin-bottom: 15px;
+    padding: 10px 0;
+  }
+
+  .item-detail {
+    width: 100%;
+    background: white;
+  }
+
+  .item-vinicola {
+    background-color: $corPadraoItem;
+  }
+
+  .item-title {
+    color: #929292;
+  }
+  .item-info {
+    span {
+      font-size: 18px;
+      padding: 2px;
+    }
+  }
+
+  .icon-person {
+    height: 22px;
+    position: absolute;
+    bottom: -3px;
+  }
+
+  .div-icon {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    position: relative;
+  }
+
+  .item-uva {
+    background-color: $corPadraoItem;
+
+    span {
+      font-size: 18px;
+      display: block;
+      padding: 3px 0;
+    }
+  }
+}

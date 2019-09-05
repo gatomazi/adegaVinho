@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ item.nome }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="item-profile" text-center>
+    <img [src]="item.imagem" />
+  </div>
+
+  <div class="item-detail mg-hor" padding>
+    <h3>{{ item.nome }}</h3>
+    <p>{{ item.descricao }}</p>
+    <div *ngIf="item.tipoVinho != ''" class="item-info">
+      <div class="div-icon">
+        <img class="icon-person" src="../../assets/icon/taca.png" />
+      </div>
+      <span> Tipo de vinho: {{ item.tipoVinho }}</span>
+    </div>
+    <div *ngIf="item.safra != ''" class="item-info">
+      <div class="div-icon">
+        <img class="icon-person" src="../../assets/icon/harvest.png" />
+      </div>
+      <span> Safra: {{ item.safra }}</span>
+    </div>
+    <div *ngIf="item.teorAlc != ''" class="item-info">
+      <div class="div-icon">
+        <img class="icon-person" src="../../assets/icon/teor.png" />
+      </div>
+      <span> Teor Alcóolico: {{ item.teorAlc }}%</span>
+    </div>
+
+    <div class="item-info">
+      <div class="div-icon">
+        <img class="icon-person" src="../../assets/icon/wine-box.png" />
+      </div>
+      <span> Qtd. disponível: {{ item.qtd > 0 ? item.qtd : 0 }}</span>
+    </div>
+  </div>
+
+  <div
+    *ngIf="item.produtor != '' || item.regiao != '' || item.pais != ''"
+    class="item-vinicola mg-hor"
+    padding
+  >
+    <h5 class="item-title">
+      <div class="div-icon">
+        <img class="icon-person" src="../../assets/icon/farm.png" />
+      </div>
+      Vinícola
+    </h5>
+    <h4>
+      {{ item.produtor
+      }}<span *ngIf="item.produtor != '' && item.regiao != ''">,</span>
+      <small>
+        {{ item.regiao }}
+        <span *ngIf="item.pais != '' && item.regiao != ''">-</span>
+        {{ item.pais }}
+      </small>
+    </h4>
+  </div>
+
+  <div *ngIf="item.uva != ''" class="item-uva mg-hor" padding>
+    <h5 class="item-title">
+      <div class="div-icon">
+        <img class="icon-person" src="../../assets/icon/grape2.png" />
+      </div>
+      Uvas
+    </h5>
+
+    <span *ngFor="let nomeUva of item.uva">{{ nomeUva }}</span>
+  </div>
+</ion-content>

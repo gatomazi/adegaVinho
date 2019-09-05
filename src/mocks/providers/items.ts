@@ -1,54 +1,63 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
-import { Item } from '../../models/item';
+import { Item } from "../../models/item";
 
 @Injectable()
 export class Items {
   items: Item[] = [];
 
   defaultItem: any = {
-    "name": "Burt Bear",
-    "profilePic": "assets/img/speakers/bear.jpg",
-    "about": "Burt is a Bear.",
+    name: "Burt Bear",
+    profilePic: "assets/img/speakers/bear.jpg",
+    about: "Burt is a Bear."
   };
-
 
   constructor() {
     let items = [
       {
-        "name": "Burt Bear",
-        "profilePic": "assets/img/speakers/bear.jpg",
-        "about": "Burt is a Bear."
+        id: 1,
+        nome: "Corte Balda Nero di Troia",
+        safra: 2018,
+        pais: "Itália",
+        regiao: "Puglia",
+        produtor: "Angelo Rocca e Figli Srl",
+        qtd: 5,
+        imagem: "assets/img/vinhos/corte-balda.png",
+        descricao:
+          "A vinícola Rocca ganhou o prêmio de Melhor vinícola de 2018 pela Golden League.",
+        teorAlc: 14.0,
+        tipoVinho: "Tinto",
+        uva: ["Nero di Troia"]
       },
       {
-        "name": "Charlie Cheetah",
-        "profilePic": "assets/img/speakers/cheetah.jpg",
-        "about": "Charlie is a Cheetah."
+        id: 2,
+        nome: "Casillero Del Diablo Red Blend",
+        safra: 2017,
+        pais: "Chile",
+        regiao: "Valle Central",
+        produtor: "Concha Y Toro",
+        qtd: 17,
+        imagem: "assets/img/vinhos/casillero.png",
+        descricao:
+          "Casillero Del Diablo é um vinho potente e de muita personalidade, que foi inspirado em pessoas que gostam de quebrar regras.",
+        teorAlc: 13.5,
+        tipoVinho: "Tinto",
+        uva: ["Cabernet Sauvignon", "Syrah"]
       },
       {
-        "name": "Donald Duck",
-        "profilePic": "assets/img/speakers/duck.jpg",
-        "about": "Donald is a Duck."
-      },
-      {
-        "name": "Eva Eagle",
-        "profilePic": "assets/img/speakers/eagle.jpg",
-        "about": "Eva is an Eagle."
-      },
-      {
-        "name": "Ellie Elephant",
-        "profilePic": "assets/img/speakers/elephant.jpg",
-        "about": "Ellie is an Elephant."
-      },
-      {
-        "name": "Molly Mouse",
-        "profilePic": "assets/img/speakers/mouse.jpg",
-        "about": "Molly is a Mouse."
-      },
-      {
-        "name": "Paul Puppy",
-        "profilePic": "assets/img/speakers/puppy.jpg",
-        "about": "Paul is a Puppy."
+        id: 3,
+        nome: "Les Calandières Rosé Méditerranée",
+        safra: 2017,
+        pais: "França",
+        regiao: "Provence",
+        produtor: "Castel",
+        qtd: 2,
+        imagem: "assets/img/vinhos/calandieres.png",
+        descricao:
+          "O território da Provence fica aos pés dos Alpes e é banhada pelo Mediterrâneo, e é de onde saem alguns dos melhores rosés do mundo.",
+        teorAlc: 12.0,
+        tipoVinho: "Rosé",
+        uva: ["Grenache", "Syrah", "Merlot", "Cabernet Sauvignon"]
       }
     ];
 
@@ -62,10 +71,13 @@ export class Items {
       return this.items;
     }
 
-    return this.items.filter((item) => {
+    return this.items.filter(item => {
       for (let key in params) {
         let field = item[key];
-        if (typeof field == 'string' && field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0) {
+        if (
+          typeof field == "string" &&
+          field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0
+        ) {
           return item;
         } else if (field == params[key]) {
           return item;

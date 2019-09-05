@@ -1,3 +1,10 @@
 page-tabs {
+  .ion-ios-wines-outline,
+  .ion-ios-wines,
+  .ion-md-wines,
+  .ion-md-wines-outline {
+    content: url("../../assets/icon/wines.png");
+  }
 
+  background-color: $corPadraoVisual !important;
 }
