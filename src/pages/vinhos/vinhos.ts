@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { IonicPage, ModalController, NavController } from "ionic-angular";
 
-import { Item } from "../../models/item";
+import { Vinho } from "../../models/item";
 import { Items } from "../../providers";
 import { Settings } from "../../providers";
 
@@ -11,7 +11,7 @@ import { Settings } from "../../providers";
   templateUrl: "vinhos.html"
 })
 export class VinhosPage {
-  currentItems: Item[];
+  currentItems: Vinho[];
 
   constructor(
     public navCtrl: NavController,
@@ -67,11 +67,11 @@ export class VinhosPage {
     editModal.present();
   }
 
-  deleteItem(item) {
+  deleteItem(item: Vinho) {
     this.items.delete(item);
   }
 
-  openItem(item: Item) {
+  openItem(item: Vinho) {
     this.navCtrl.push("VinhoDetalhePage", {
       item: item
     });

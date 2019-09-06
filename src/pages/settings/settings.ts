@@ -1,6 +1,11 @@
 import { Component } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ToastController
+} from "ionic-angular";
 
 import { Items } from "../../providers";
 
@@ -20,7 +25,8 @@ export class SettingsPage {
     public navCtrl: NavController,
     public items: Items,
     public navParams: NavParams,
-    public translate: TranslateService
+    public translate: TranslateService,
+    public toastCtrl: ToastController
   ) {}
 
   ionViewWillEnter() {
@@ -33,5 +39,11 @@ export class SettingsPage {
 
   async exportarAdega() {
     await this.items.exportItems();
+    let toast = this.toastCtrl.create({
+      message: "Adega exportada com sucesso",
+      duration: 3000,
+      position: "middle"
+    });
+    toast.present();
   }
 }

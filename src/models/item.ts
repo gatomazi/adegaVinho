@@ -7,18 +7,55 @@
  * The Items service manages creating instances of Item, so go ahead and rename
  * that something that fits your app as well.
  */
-export class Item {
+export class Vinho implements InterfaceVinho {
+  id: number;
+  id_usuario: number;
+  nome: string;
+  safra: number;
+  pais: string;
+  regiao: string;
+  produtor: string;
+  qtd: number;
+  imagem: string;
+  descricao: string;
+  teorAlc;
+  tipoVinho: string;
+  uva: string;
 
   constructor(fields: any) {
-    // Quick and dirty extend/assign fields to this model
     for (const f in fields) {
       // @ts-ignore
-      this[f] = fields[f];
+      switch (f) {
+        case "safra":
+        case "qtd":
+        case "id_usuario":
+        case "id":
+          this[f] = parseInt(fields[f]);
+          break;
+        case "teorAlc":
+          this[f] = parseFloat(fields[f]);
+          break;
+        default:
+          this[f] = fields[f];
+          break;
+      }
     }
   }
-
 }
 
-export interface Item {
-  [prop: string]: any;
+export interface InterfaceVinho {
+  // [prop: string]: any;
+  id: number;
+  id_usuario: number;
+  nome: string;
+  safra: number;
+  pais: string;
+  regiao: string;
+  produtor: string;
+  qtd: number;
+  imagem: string;
+  descricao: string;
+  teorAlc;
+  tipoVinho: string;
+  uva: string;
 }

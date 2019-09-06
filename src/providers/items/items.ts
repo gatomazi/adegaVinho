@@ -1,15 +1,15 @@
 import { Injectable } from "@angular/core";
 import { Storage } from "@ionic/storage";
-import { Item } from "../../models/item";
+import { Vinho } from "../../models/item";
 import { Api } from "../api/api";
 
 @Injectable()
 export class Items {
-  items: Item[] = [];
+  items: Vinho[] = [];
   constructor(public api: Api, public storage: Storage) {
     this.getValueStorage("vinhos").then(items => {
       for (let item of items) {
-        this.items.push(new Item(item));
+        this.items.push(new Vinho(item));
       }
     });
   }
@@ -35,14 +35,22 @@ export class Items {
     });
   }
 
-  add(item: Item) {
+  async add(item: Vinho) {
     this.items.push(item);
     this.setAllStorage("vinhos", this.items);
+    if (item.id) {
+      await this.api.sendReq("vinhos/" + item.id, "DELETE");
+    }
   }
 
-  delete(item: Item) {
+  async delete(item: Vinho) {
+    //Dando pau pra achar o item
     this.items.splice(this.items.indexOf(item), 1);
     this.setAllStorage("vinhos", this.items);
+
+    if (item.id) {
+      await this.api.sendReq("vinhos/" + item.id, "DELETE");
+    }
   }
 
   setAllStorage(key: string, value: any) {
@@ -56,12 +64,7 @@ export class Items {
   }
 
   async exportItems() {
-    console.log("hm");
-    // let obj = { vinhos: this.items };
-    // console.log(JSON.stringify(obj));
-    // let teste = await this.api.post("vinhos", { vinhos: this.items });
-    // console.log(teste);
-    let teste = await this.api.get("vinhos");
-    console.log(teste);
+    // await this.api.post("vinhos", this.items);
+    await this.api.sendReq("vinhos", "POST", this.items);
   }
 }

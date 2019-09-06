@@ -79,33 +79,32 @@ export class VinhoCriacaoPage {
     this.editItem = params.get("item");
     if (this.editItem != null) {
       this.item = this.editItem;
-      this.form.patchValue({ edicao: true });
       this.form.patchValue({ imagem: this.item.imagem });
     }
   }
 
-  // getPicture() {
-  //   if (Camera["installed"]()) {
-  //     this.camera
-  //       .getPicture({
-  //         destinationType: this.camera.DestinationType.DATA_URL,
-  //         targetWidth: 250,
-  //         targetHeight: 250
-  //       })
-  //       .then(
-  //         data => {
-  //           this.form.patchValue({
-  //             imagem: "data:image/jpg;base64," + data
-  //           });
-  //         },
-  //         err => {
-  //           alert("Unable to take photo");
-  //         }
-  //       );
-  //   } else {
-  //     this.fileInput.nativeElement.click();
-  //   }
-  // }
+  updatePicture2() {
+    if (Camera["installed"]()) {
+      this.camera
+        .getPicture({
+          destinationType: this.camera.DestinationType.DATA_URL,
+          targetWidth: 250,
+          targetHeight: 250
+        })
+        .then(
+          data => {
+            this.form.patchValue({
+              imagem: "data:image/jpg;base64," + data
+            });
+          },
+          err => {
+            alert("Unable to take photo");
+          }
+        );
+    } else {
+      this.fileInput.nativeElement.click();
+    }
+  }
 
   updatePicture() {
     let actionSheet;
@@ -169,6 +168,7 @@ export class VinhoCriacaoPage {
     let reader = new FileReader();
     reader.onload = readerEvent => {
       let imageData = (readerEvent.target as any).result;
+      console.log(imageData);
       this.form.patchValue({ imagem: imageData });
     };
 

@@ -15,15 +15,21 @@ export class Api {
       method: "POST",
       body: JSON.stringify(body)
     });
-    // let response = await rawResponse.json();
-    // console.log(response);
-    // return this.http.post(this.url + endpoint, body, reqOpts);
+    return await rawResponse.json();
   }
+
   async get(endpoint: string) {
     const rawResponse = await fetch(this.url + endpoint, {
       method: "GET"
     });
+    return await rawResponse.json();
+  }
 
+  async sendReq(endpoint: string, method: string, body?: any, reqOpts?: any) {
+    const rawResponse = await fetch(this.url + endpoint, {
+      method: method,
+      body: body ? JSON.stringify(body) : ""
+    });
     return await rawResponse.json();
   }
 }
