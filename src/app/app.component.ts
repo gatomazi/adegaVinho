@@ -38,15 +38,10 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    { title: "Tutorial", component: "TutorialPage" },
-    { title: "Welcome", component: "WelcomePage" },
     { title: "Tabs", component: "TabsPage" },
-    { title: "Cards", component: "CardsPage" },
-    { title: "Content", component: "ContentPage" },
     { title: "Login", component: "LoginPage" },
     { title: "Signup", component: "SignupPage" },
     { title: "Vinhos", component: "VinhosPage" },
-    { title: "Menu", component: "MenuPage" },
     { title: "Settings", component: "SettingsPage" },
     { title: "Search", component: "SearchPage" }
   ];
@@ -80,6 +75,8 @@ export class MyApp {
         } else if (browserCultureLang.match(/-TW|CHT|Hant/i)) {
           this.translate.use("zh-cmn-Hant");
         }
+      } else if (browserLang === "pt") {
+        this.translate.use("pt-br"); // Set your language here
       } else {
         this.translate.use(this.translate.getBrowserLang());
       }

@@ -55,7 +55,13 @@ export class Items {
     });
   }
 
-  exportItems() {
-    this.api.post("vinhos", this.items);
+  async exportItems() {
+    console.log("hm");
+    // let obj = { vinhos: this.items };
+    // console.log(JSON.stringify(obj));
+    // let teste = await this.api.post("vinhos", { vinhos: this.items });
+    // console.log(teste);
+    let teste = await this.api.get("vinhos");
+    console.log(teste);
   }
 }

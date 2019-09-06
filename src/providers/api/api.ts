@@ -6,11 +6,24 @@ import { Injectable } from "@angular/core";
  */
 @Injectable()
 export class Api {
-  url: string = "https://example.com/api/v1";
+  url: string = "http://localhost:8081/api/";
 
   constructor(public http: HttpClient) {}
 
-  post(endpoint: string, body: any, reqOpts?: any) {
-    return this.http.post(this.url + "/" + endpoint, body, reqOpts);
+  async post(endpoint: string, body: any, reqOpts?: any) {
+    const rawResponse = await fetch(this.url + endpoint, {
+      method: "POST",
+      body: JSON.stringify(body)
+    });
+    // let response = await rawResponse.json();
+    // console.log(response);
+    // return this.http.post(this.url + endpoint, body, reqOpts);
+  }
+  async get(endpoint: string) {
+    const rawResponse = await fetch(this.url + endpoint, {
+      method: "GET"
+    });
+
+    return await rawResponse.json();
   }
 }

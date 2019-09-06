@@ -31,4 +31,11 @@ page-vinho-criacao {
       }
     }
   }
+
+  .action-button {
+    font-size: 24px;
+    :first-child {
+      margin-right: 15px;
+    }
+  }
 }

@@ -32,10 +32,6 @@ export class SettingsPage {
   }
 
   async exportarAdega() {
-    this.items.exportItems();
-  }
-
-  ngOnChanges() {
-    console.log("Ng All Changes");
+    await this.items.exportItems();
   }
 }

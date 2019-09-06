@@ -1,11 +1,12 @@
 import { Component, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Camera } from "@ionic-native/camera";
+import { Camera, CameraOptions } from "@ionic-native/camera";
 import {
   IonicPage,
   NavController,
   ViewController,
-  NavParams
+  NavParams,
+  ActionSheetController
 } from "ionic-angular";
 
 @IonicPage()
@@ -34,7 +35,8 @@ export class VinhoCriacaoPage {
     public viewCtrl: ViewController,
     formBuilder: FormBuilder,
     public camera: Camera,
-    params: NavParams
+    params: NavParams,
+    public actionSheetCtrl: ActionSheetController
   ) {
     this.form = formBuilder.group({
       nome: ["", Validators.required],
@@ -82,27 +84,85 @@ export class VinhoCriacaoPage {
     }
   }
 
-  getPicture() {
-    if (Camera["installed"]()) {
-      this.camera
-        .getPicture({
-          destinationType: this.camera.DestinationType.DATA_URL,
-          targetWidth: 250,
-          targetHeight: 250
-        })
-        .then(
-          data => {
-            this.form.patchValue({
-              imagem: "data:image/jpg;base64," + data
-            });
-          },
-          err => {
-            alert("Unable to take photo");
+  // getPicture() {
+  //   if (Camera["installed"]()) {
+  //     this.camera
+  //       .getPicture({
+  //         destinationType: this.camera.DestinationType.DATA_URL,
+  //         targetWidth: 250,
+  //         targetHeight: 250
+  //       })
+  //       .then(
+  //         data => {
+  //           this.form.patchValue({
+  //             imagem: "data:image/jpg;base64," + data
+  //           });
+  //         },
+  //         err => {
+  //           alert("Unable to take photo");
+  //         }
+  //       );
+  //   } else {
+  //     this.fileInput.nativeElement.click();
+  //   }
+  // }
+
+  updatePicture() {
+    let actionSheet;
+    actionSheet = this.actionSheetCtrl.create({
+      title: "Editar foto do perfil",
+      buttons: [
+        {
+          text: "Escolher da biblioteca",
+          handler: () => {
+            this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
           }
-        );
-    } else {
-      this.fileInput.nativeElement.click();
-    }
+        },
+        {
+          text: "Escolher da biblioteca sem camera",
+          handler: () => {
+            this.fileInput.nativeElement.click();
+          }
+        },
+        {
+          text: "Usar a câmera",
+          handler: () => {
+            this.takePicture(this.camera.PictureSourceType.CAMERA);
+          }
+        },
+        {
+          text: "Cancelar",
+          role: "cancel"
+        }
+      ]
+    });
+
+    actionSheet.present();
+  }
+
+  takePicture(sourceType) {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.PNG,
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit: true,
+      sourceType: sourceType,
+      correctOrientation: true,
+      targetWidth: 250,
+      targetHeight: 250,
+      cameraDirection: 0,
+      saveToPhotoAlbum: false
+    };
+    "";
+    this.camera.getPicture(options).then(
+      imageData => {
+        this.form.patchValue({
+          imagem: "data:image/jpg;base64," + imageData
+        });
+      },
+      () => {}
+    );
   }
 
   processWebImage(event) {

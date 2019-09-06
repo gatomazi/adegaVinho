@@ -2,7 +2,7 @@
   <ion-navbar>
     <ion-title>{{ "ITEM_CREATE_TITLE" | translate }}</ion-title>
     <ion-buttons start>
-      <button ion-button (click)="cancel()">
+      <button class="action-button" ion-button (click)="cancel()">
         <span color="primary" showWhen="ios">
           {{ "CANCEL_BUTTON" | translate }}
         </span>
@@ -10,7 +10,13 @@
       </button>
     </ion-buttons>
     <ion-buttons end>
-      <button ion-button (click)="done()" [disabled]="!isReadyToSave" strong>
+      <button
+        class="action-button"
+        ion-button
+        (click)="done()"
+        [disabled]="!isReadyToSave"
+        strong
+      >
         <span color="primary" showWhen="ios">
           {{ "DONE_BUTTON" | translate }}
         </span>
@@ -32,7 +38,7 @@
       name="files[]"
       (change)="processWebImage($event)"
     />
-    <div class="profile-image-wrapper" (click)="getPicture()">
+    <div class="profile-image-wrapper" (click)="updatePicture()">
       <div
         class="profile-image-placeholder"
         *ngIf="!this.form.controls.imagem.value"

@@ -1,8 +1,8 @@
-import 'rxjs/add/operator/toPromise';
+import "rxjs/add/operator/toPromise";
 
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
-import { Api } from '../api/api';
+import { Api } from "../api/api";
 
 /**
  * Most apps have the concept of a User. This is a simple provider
@@ -27,46 +27,46 @@ import { Api } from '../api/api';
 export class User {
   _user: any;
 
-  constructor(public api: Api) { }
+  constructor(public api: Api) {}
 
   /**
    * Send a POST request to our login endpoint with the data
    * the user entered on the form.
    */
-  login(accountInfo: any) {
-    let seq = this.api.post('login', accountInfo).share();
+  // login(accountInfo: any) {
+  //   let seq = this.api.post('login', accountInfo).share();
 
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      } else {
-      }
-    }, err => {
-      console.error('ERROR', err);
-    });
+  //   seq.subscribe((res: any) => {
+  //     // If the API returned a successful response, mark the user as logged in
+  //     if (res.status == 'success') {
+  //       this._loggedIn(res);
+  //     } else {
+  //     }
+  //   }, err => {
+  //     console.error('ERROR', err);
+  //   });
 
-    return seq;
-  }
+  //   return seq;
+  // }
 
   /**
    * Send a POST request to our signup endpoint with the data
    * the user entered on the form.
    */
-  signup(accountInfo: any) {
-    let seq = this.api.post('signup', accountInfo).share();
+  // signup(accountInfo: any) {
+  //   let seq = this.api.post('signup', accountInfo).share();
 
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      }
-    }, err => {
-      console.error('ERROR', err);
-    });
+  //   seq.subscribe((res: any) => {
+  //     // If the API returned a successful response, mark the user as logged in
+  //     if (res.status == 'success') {
+  //       this._loggedIn(res);
+  //     }
+  //   }, err => {
+  //     console.error('ERROR', err);
+  //   });
 
-    return seq;
-  }
+  //   return seq;
+  // }
 
   /**
    * Log the user out, which forgets the session
