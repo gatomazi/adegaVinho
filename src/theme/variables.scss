@@ -2,6 +2,21 @@
 // http://ionicframework.com/docs/v2/theming/
 $font-path: "../assets/fonts";
 
+
+@font-face {
+    font-family: 'DancingScript';
+    src: url($font-path+'/DancingScript-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PlayfairDisplay';
+    src: url($font-path+'/PlayfairDisplay-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @import "ionic.globals";
 
 // Shared Variables
@@ -22,9 +37,9 @@ $background-color: #fff;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
-$corPadraoItem: #fff;
+$corPadraoItem: #fcf3e7;
 $corPadraoContent: #fae7d0;
-$corPadraoVisual: #f5cfa2;
+$corPadraoVisual: #89042f;
 
 $colors: (
   primary: #488aff,
@@ -32,8 +47,42 @@ $colors: (
   danger: #f53d3d,
   light: #f4f4f4,
   cor-padrao: $corPadraoVisual,
+  cor-padrao-content: $corPadraoContent,
   dark: #222
 );
+
+
+
+.searchbar-md .searchbar-input{
+  font-size: 12px !important;
+}
+.searchbar-md .searchbar-input, .searchbar-ios{
+  border-radius: 25px !important;
+}
+
+.font-one, ion-item-options, ion-searchbar{
+  font-family: 'PlayfairDisplay' !important;
+}
+
+.font-two{
+  font-family: 'DancingScript' !important;
+}
+
+.list-md .item-block .item-inner, .list-ios .item-block .item-inner, .list-ios > .item-wrapper:last-child .item-block, .list-md > .item-wrapper:last-child .item-block {
+  border-color: $corPadraoContent !important;
+}
+
+.list-ios > .item-block:first-child, .list-mds > .item-block:first-child, .list-ios > .item-block:last-child, .list-mds > .item-block:last-child {
+  border-color: $corPadraoContent !important;
+}
+
+.bar-button-default-ios{
+  color: #fff !important;
+}
+
+.each-vinho button:not(.disable-hover), .default-bg ion-item, .default-bg2{
+  background: $corPadraoItem !important;
+}
 
 ion-content {
   background-color: $corPadraoContent !important;
@@ -45,9 +94,16 @@ $toolbar-background: $corPadraoVisual;
   margin: 15px 0;
 }
 
+
+
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
+$searchbar-ios-background-color: rgba(255, 255, 255, 1);
+.searchbar-ios{
+  margin: 5px 0px;
+}
+
 
 // App Material Design Variables
 // --------------------------------------------------

@@ -7,7 +7,7 @@ import {
   ToastController
 } from "ionic-angular";
 
-import { Items } from "../../providers";
+import { Vinhos } from "../../providers";
 
 @IonicPage()
 @Component({
@@ -23,7 +23,7 @@ export class SettingsPage {
 
   constructor(
     public navCtrl: NavController,
-    public items: Items,
+    public vinhos: Vinhos,
     public navParams: NavParams,
     public translate: TranslateService,
     public toastCtrl: ToastController
@@ -38,7 +38,7 @@ export class SettingsPage {
   }
 
   async exportarAdega() {
-    await this.items.exportItems();
+    await this.vinhos.exportVinhos();
     let toast = this.toastCtrl.create({
       message: "Adega exportada com sucesso",
       duration: 3000,

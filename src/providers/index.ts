@@ -1,5 +1,4 @@
 export { Api } from "./api/api";
-// export { Items } from '../mocks/providers/items';
-export { Items } from "./items/items";
-export { Settings } from "./settings/settings";
+export { Vinhos } from "./vinhos/vinhos";
 export { User } from "./user/user";
+export { Settings } from "./settings/settings";

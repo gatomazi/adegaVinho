@@ -1,5 +1,5 @@
 {
-  "BACK_BUTTON_TEXT": "Voltar",
+  "BACK_BUTTON_TEXT": "",
 
   "NAME": "Nome",
   "EMAIL": "Email",
@@ -9,8 +9,8 @@
   "SIGNUP": "Cadastre-se",
 
   "TAB1_TITLE": "Adega",
-  "TAB2_TITLE": "Explorar",
-  "TAB3_TITLE": "Configurações",
+  "TAB2_TITLE": "Configurações",
+  "TAB3_TITLE": "Sair",
 
   "MAP_TITLE": "Mapa",
 
@@ -28,7 +28,7 @@
 
   "TUTORIAL_SLIDE4_TITLE": "Pronto para Usar?",
 
-  "WELCOME_INTRO": "O ponto de partida para seu próximo app feito no Ionic",
+  "WELCOME_INTRO": "Adega de Vinhos",
 
   "SETTINGS_TITLE": "Configurações",
   "SETTINGS_OPTION1": "Opção 1",

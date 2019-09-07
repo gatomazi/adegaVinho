@@ -1,41 +1,42 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{ "LIST_MASTER_TITLE" | translate }}</ion-title>
+    <ion-title class="font-one">{{ "LIST_MASTER_TITLE" | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-searchbar
-    (ionInput)="getItems($event)"
+    (ionInput)="getVinhos($event)"
     placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"
   ></ion-searchbar>
   <ion-list>
-    <ion-item-sliding *ngFor="let item of currentItems">
-      <button ion-item (click)="openItem(item)">
-        <ion-avatar item-start>
-          <img [src]="item.imagem" />
-        </ion-avatar>
+    <ion-item-sliding class="each-vinho" *ngFor="let vinho of currentVinhos">
+      <button class="font-two" ion-item (click)="openVinho(vinho)">
+        <div item-start>
+          <img style="width: 55px" *ngIf="vinho.imagem" [src]="vinho.imagem" />
+          <img style="width: 45px" *ngIf="!vinho.imagem" src="assets/img/no-photo.png" />
+        </div>
         <h2>
-          {{ item.nome }}
+          {{ vinho.nome }}
         </h2>
-        <p>{{ item.descricao }}</p>
-        <ion-note item-end *ngIf="item.safra">{{ item.safra }}</ion-note>
+        <p>{{ vinho.descricao }}</p>
+        <ion-note item-end color="cor-padrao" *ngIf="vinho.safra">{{ vinho.safra }}</ion-note>
       </button>
 
       <ion-item-options side="left">
-        <button ion-button color="danger" (click)="deleteItem(item)">
+        <button ion-button color="danger" (click)="deleteVinho(vinho)">
           {{ "DELETE_BUTTON" | translate }}
         </button>
       </ion-item-options>
       <ion-item-options side="right">
-        <button ion-button color="success" (click)="editItem(item)">
+        <button ion-button color="success" (click)="editVinho(vinho)">
           {{ "EDIT_BUTTON" | translate }}
         </button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
   <ion-fab bottom right #fab>
-    <button color="cor-padrao" ion-fab="" (click)="addItem()" class="fab">
+    <button color="cor-padrao" ion-fab="" (click)="addVinho()" class="fab">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>

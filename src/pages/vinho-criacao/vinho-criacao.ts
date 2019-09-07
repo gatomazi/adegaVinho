@@ -39,6 +39,8 @@ export class VinhoCriacaoPage {
     public actionSheetCtrl: ActionSheetController
   ) {
     this.form = formBuilder.group({
+      id: [""],
+      id_usuario: [""],
       nome: ["", Validators.required],
       safra: [
         "",
@@ -76,10 +78,12 @@ export class VinhoCriacaoPage {
     this.form.valueChanges.subscribe(v => {
       this.isReadyToSave = this.form.valid;
     });
-    this.editItem = params.get("item");
+    this.editItem = params.get("vinho");
     if (this.editItem != null) {
       this.item = this.editItem;
       this.form.patchValue({ imagem: this.item.imagem });
+      this.form.patchValue({ id: this.item.id });
+      this.form.patchValue({ id_usuario: this.item.id_usuario });
     }
   }
 
@@ -186,7 +190,7 @@ export class VinhoCriacaoPage {
       return;
     }
     this.viewCtrl.dismiss({
-      item: this.form.value,
+      vinho: this.form.value,
       edicao: this.editItem != null ? true : false
     });
   }

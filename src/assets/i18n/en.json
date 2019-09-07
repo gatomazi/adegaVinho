@@ -1,5 +1,5 @@
 {
-  "BACK_BUTTON_TEXT": "Back",
+  "BACK_BUTTON_TEXT": "",
 
   "NAME": "Name",
   "EMAIL": "Email",
@@ -9,8 +9,8 @@
   "SIGNUP": "Sign up",
 
   "TAB1_TITLE": "Bodega",
-  "TAB2_TITLE": "Search",
-  "TAB3_TITLE": "Settings",
+  "TAB2_TITLE": "Settings",
+  "TAB3_TITLE": "Logout",
 
   "MAP_TITLE": "Map",
 
@@ -28,7 +28,7 @@
 
   "TUTORIAL_SLIDE4_TITLE": "Ready to Play?",
 
-  "WELCOME_INTRO": "The starting point for your next great Ionic app",
+  "WELCOME_INTRO": "Botega",
 
   "SETTINGS_TITLE": "Settings",
   "SETTINGS_OPTION1": "Option 1",

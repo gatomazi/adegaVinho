@@ -1,9 +1,8 @@
 import { Component } from "@angular/core";
-import { IonicPage, ModalController, NavController } from "ionic-angular";
+import { IonicPage, ModalController, NavController, LoadingController } from "ionic-angular";
 
-import { Vinho } from "../../models/item";
-import { Items } from "../../providers";
-import { Settings } from "../../providers";
+import { Vinho } from "../../models/vinho";
+import { Vinhos } from "../../providers";
 
 @IonicPage()
 @Component({
@@ -11,55 +10,52 @@ import { Settings } from "../../providers";
   templateUrl: "vinhos.html"
 })
 export class VinhosPage {
-  currentItems: Vinho[];
+  currentVinhos: Vinho[];
 
   constructor(
     public navCtrl: NavController,
-    public items: Items,
-    public settings: Settings,
-    public modalCtrl: ModalController
+    public vinhos: Vinhos,
+    public modalCtrl: ModalController,
+    public loadingCtrl: LoadingController
   ) {
-    // this.currentItems = this.items.query();
+    // this.currentVinhos = this.vinhos.query();
 
-    // this.settings.setAllStorage("vinhos", this.currentItems);
-
-    this.currentItems = this.items.query();
+    // this.settings.setAllStorage("vinhos", this.currentVinhos);
+    
+    this.getItens();
   }
 
-  getItems(ev) {
+  getVinhos(ev) {
     let val = ev.target.value;
     if (!val || !val.trim()) {
-      this.currentItems = this.items.query();
+      this.vinhos.getVinhos();
       return;
     }
-    this.currentItems = this.items.query({
-      nome: val
-    });
+    this.currentVinhos = this.vinhos.query(val);
   }
 
-  addItem() {
+  addVinho() {
     let addModal = this.modalCtrl.create("VinhoCriacaoPage");
-    addModal.onDidDismiss(res => {
+    addModal.onDidDismiss(async res => {
       if (res) {
-        if (res.item) {
-          this.items.add(res.item);
+        if (res.vinho) {
+          await this.vinhos.add(new Vinho(res.vinho));
+          this.getItens();
         }
       }
     });
     addModal.present();
   }
 
-  editItem(item) {
-    item.edicao = true;
-
-    let editModal = this.modalCtrl.create("VinhoCriacaoPage", { item: item });
-    editModal.onDidDismiss(res => {
+  editVinho(vinho) {
+    let editModal = this.modalCtrl.create("VinhoCriacaoPage", { vinho: vinho });
+    console.log("Edit Vinho");
+    editModal.onDidDismiss(async res => {
       if (res) {
-        if (res.item) {
-          if (res.edicao) {
-            this.items.delete(res.item);
-          }
-          this.items.add(res.item);
+        if (res.vinho) {
+          console.log("Edit vinho", res.vinho);
+          await this.vinhos.edit(new Vinho(res.vinho));
+          this.getItens();
         }
       }
     });
@@ -67,13 +63,25 @@ export class VinhosPage {
     editModal.present();
   }
 
-  deleteItem(item: Vinho) {
-    this.items.delete(item);
+  async getItens(val?){
+   
+    let obj: any;
+    if(val){
+      obj = {
+        nome: val
+      }
+    }
+    this.currentVinhos = this.vinhos.query(obj);
+    
   }
 
-  openItem(item: Vinho) {
+  deleteVinho(vinho: Vinho) {
+    this.vinhos.delete(vinho);
+  }
+
+  openVinho(vinho: Vinho) {
     this.navCtrl.push("VinhoDetalhePage", {
-      item: item
+      vinho: vinho
     });
   }
 }

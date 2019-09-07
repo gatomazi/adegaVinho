@@ -1,0 +1,64 @@
+page-welcome {
+
+  background-color: transparent !important;
+
+  .splash-bg {
+    position: relative;
+    background: url('../assets/img/background/3.jpg') no-repeat transparent;
+    background-size: cover;
+    height: 100%;
+    z-index: 1;
+    background-repeat: repeat-x;
+    background-size: 100%;
+  }
+
+  form div{
+    padding: 0px 15px !important;
+
+    ion-input{
+      margin-bottom: 15px;
+      background-color:$corPadraoContent; 
+    }
+  }
+
+  .splash-info {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    padding-top: 10%;
+    text-align: center;
+  }
+  .splash-logo {
+    margin: auto;
+    background: url('../assets/img/logo.png') repeat transparent;
+    background-size: 100%;
+    width: 200px;
+    height: 200px;
+  }
+  .splash-intro {
+    font-size: 18px;
+    font-weight: bold;
+    max-width: 80%;
+    margin: auto;
+  }
+  
+  button.signup {
+    background-color: $corPadraoContent;
+    color: #000;
+    &.activated {
+      background-color: $corPadraoVisual;
+      color: #fff;
+    }
+  }
+  button.login {
+    margin-top: 25px;
+    background-color: $corPadraoVisual;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    
+    &.activated {
+      color: #000;
+      background-color: $corPadraoContent;
+    }
+  }
+}

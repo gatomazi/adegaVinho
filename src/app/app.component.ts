@@ -4,36 +4,18 @@ import { StatusBar } from "@ionic-native/status-bar";
 import { TranslateService } from "@ngx-translate/core";
 import { Config, Nav, Platform } from "ionic-angular";
 
-import { FirstRunPage } from "../pages";
+import { FirstRunPage, LoggedPage } from "../pages";
 import { Settings } from "../providers";
 
 @Component({
   template: `
-    <ion-menu [content]="content" type="overlay">
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Pages</ion-title>
-        </ion-toolbar>
-      </ion-header>
-
-      <ion-content>
-        <ion-list>
-          <button
-            menuClose
-            ion-item
-            *ngFor="let p of pages"
-            (click)="openPage(p)"
-          >
-            {{ p.title }}
-          </button>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
     <ion-nav #content [root]="rootPage"></ion-nav>
   `
 })
 export class MyApp {
   rootPage = FirstRunPage;
+  // rootPage: any;
+  usuario:any;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -49,16 +31,26 @@ export class MyApp {
   constructor(
     private translate: TranslateService,
     platform: Platform,
-    settings: Settings,
     private config: Config,
     private statusBar: StatusBar,
-    private splashScreen: SplashScreen
+    private splashScreen: SplashScreen,
+    private settings: Settings
   ) {
     platform.ready().then(() => {
+      this.getUser();
+
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
     this.initTranslate();
+  }
+
+  async getUser(){
+    this.usuario = await this.settings.getValue("usuario");
+    console.log(this.usuario);
+    if(this.usuario && this.usuario.token){
+      this.rootPage = LoggedPage;
+    }
   }
 
   initTranslate() {
