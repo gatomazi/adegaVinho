@@ -13,20 +13,12 @@ import { Settings } from "../providers";
   `
 })
 export class MyApp {
-  rootPage = FirstRunPage;
-  // rootPage: any;
+  
+  rootPage: any;
   usuario:any;
 
   @ViewChild(Nav) nav: Nav;
 
-  pages: any[] = [
-    { title: "Tabs", component: "TabsPage" },
-    { title: "Login", component: "LoginPage" },
-    { title: "Signup", component: "SignupPage" },
-    { title: "Vinhos", component: "VinhosPage" },
-    { title: "Settings", component: "SettingsPage" },
-    { title: "Search", component: "SearchPage" }
-  ];
 
   constructor(
     private translate: TranslateService,
@@ -38,18 +30,24 @@ export class MyApp {
   ) {
     platform.ready().then(() => {
       this.getUser();
-
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    
     this.initTranslate();
   }
+
+ 
 
   async getUser(){
     this.usuario = await this.settings.getValue("usuario");
     console.log(this.usuario);
     if(this.usuario && this.usuario.token){
-      this.rootPage = LoggedPage;
+      // this.rootPage = LoggedPage;
+      this.nav.setRoot(LoggedPage);
+    }else{
+      this.nav.setRoot(FirstRunPage);
+      this.rootPage = FirstRunPage;
     }
   }
 

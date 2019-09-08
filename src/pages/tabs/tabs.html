@@ -8,10 +8,12 @@
     [root]="tab2Root"
     [tabTitle]="tab2Title"
     tabIcon="cog"
+    
   ></ion-tab>
   <ion-tab
     [root]="tab3Root"
     [tabTitle]="tab3Title"
     tabIcon="log-out"
+    (ionSelect)="logout()"
   ></ion-tab>
 </ion-tabs>

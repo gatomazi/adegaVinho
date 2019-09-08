@@ -10,6 +10,10 @@ page-welcome {
     z-index: 1;
     background-repeat: repeat-x;
     background-size: 100%;
+    background-color: #000;
+  }
+  .scroll-content{
+    padding-bottom: 0px !important;
   }
 
   form div{

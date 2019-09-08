@@ -16,21 +16,18 @@ export class Vinhos {
     public settings: Settings
     ) {
       
-    this.getVinhos();
+    // this.getVinhos();
   }
 
   query(params?: any) {
     if (!params) {
       return this.vinhos;
     }
-
-    return this.vinhos.filter(item => {
+    
+    return this.vinhos.filter((item) => {
       for (let key in params) {
         let field = item[key];
-        if (
-          typeof field == "string" &&
-          field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0
-        ) {
+        if (typeof field == 'string' && field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0) {
           return item;
         } else if (field == params[key]) {
           return item;
@@ -65,25 +62,33 @@ export class Vinhos {
 
   async getVinhos(arrVinhos?){
     let res: any;
+    
+    this.vinhos = []; 
     if(!arrVinhos){
       let usuario = await this.getUser();
-      console.log(usuario)
       res =  await this.api.sendReq("vinhos/"+usuario.id_usuario, "GET");
     }else{
-      this.vinhos = [];
       res = arrVinhos;
     }
+    
     if(res.vinhos){
+      this.vinhos = []; 
       for (let vinho of res.vinhos) {
         this.vinhos.push(new Vinho(vinho));
       }
-      this.setAllStorage("vinhos", this.vinhos);
     }
     
   }
 
+  async returnVinhos(){
+    
+    await this.getVinhos();
+    return this.vinhos;
+  }
+
   async getUser(){
-    return await this.settings.getValue("usuario");
+    let user = await this.settings.getValue("usuario");
+    return user;
   }
 
   setAllStorage(key: string, value: any) {

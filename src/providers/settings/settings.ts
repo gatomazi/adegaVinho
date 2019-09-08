@@ -10,6 +10,9 @@ export class Settings {
   setValue(key: string, value: any) {
     return this.storage.set(key, value);
   }
+  removeValue(key: string) {
+    return this.storage.remove(key);
+  }
 
   getValue(key: string) {
     return this.storage.get(key)

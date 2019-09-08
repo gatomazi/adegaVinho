@@ -31,15 +31,7 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    IonicModule.forRoot(MyApp, {
-      backButtonText: '',
-      iconMode: 'ios',
-      modalEnter: 'modal-slide-in',
-      modalLeave: 'modal-slide-out',
-      tabsPlacement: 'bottom',
-      pageTransition: 'ios-transition'
-    }
-  ),
+    IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],

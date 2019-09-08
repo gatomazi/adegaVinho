@@ -18,20 +18,23 @@ export class VinhosPage {
     public modalCtrl: ModalController,
     public loadingCtrl: LoadingController
   ) {
-    // this.currentVinhos = this.vinhos.query();
+  }
 
-    // this.settings.setAllStorage("vinhos", this.currentVinhos);
-    
+  ionViewDidEnter(){
+    console.log("hmm");
+    this.currentVinhos = [];
     this.getItens();
   }
 
   getVinhos(ev) {
     let val = ev.target.value;
     if (!val || !val.trim()) {
-      this.vinhos.getVinhos();
+      this.getItens();
       return;
     }
-    this.currentVinhos = this.vinhos.query(val);
+    this.currentVinhos = this.vinhos.query({
+      nome: val
+    });
   }
 
   addVinho() {
@@ -63,15 +66,17 @@ export class VinhosPage {
     editModal.present();
   }
 
-  async getItens(val?){
-   
-    let obj: any;
-    if(val){
-      obj = {
-        nome: val
-      }
-    }
-    this.currentVinhos = this.vinhos.query(obj);
+  async getItens(){
+    let loading = this.loadingCtrl.create({
+      content: 'Carregando vinhos'
+    });
+  
+    loading.present();
+  
+    
+    
+    this.currentVinhos = await this.vinhos.returnVinhos();
+    loading.dismiss();
     
   }
 

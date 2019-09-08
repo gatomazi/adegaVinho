@@ -18,9 +18,11 @@ export class Api {
     }
 
     let usuario:any = await this.getUser();
-    if(usuario.token){
-      objSent.headers = {
-        Authorization: "Bearer " + usuario.token
+    if(usuario){
+      if(usuario.token){
+        objSent.headers = {
+          Authorization: "Bearer " + usuario.token
+        }
       }
     }
     const rawResponse = await fetch(this.url + endpoint, objSent);

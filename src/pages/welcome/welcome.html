@@ -14,7 +14,7 @@
     <div style="margin-top: 15px;">
       <form *ngIf="makeLogin" (submit)="doLogin()">
         <div>
-          <ion-input placeholder="Usuário" type="text" [(ngModel)]="account.usuario" name="usuario"></ion-input>
+          <ion-input placeholder="Usuário" autocomplete="on" type="text" [(ngModel)]="account.usuario" name="usuario"></ion-input>
         </div>
         <div>
           <ion-input placeholder="Senha" type="password" [(ngModel)]="account.password" name="password"></ion-input>
@@ -29,10 +29,10 @@
     <form *ngIf="makeSignup" (submit)="doSignup()">
       <div>
         
-        <ion-input placeholder="Nome" type="text" [(ngModel)]="account.nome" name="nome"></ion-input>
+        <ion-input placeholder="Nome" autocomplete="on" type="text" [(ngModel)]="account.nome" name="nome"></ion-input>
       </div>
       <div>
-        <ion-input placeholder="Usuário" type="text" [(ngModel)]="account.usuario" name="usuario"></ion-input>
+        <ion-input placeholder="Usuário" autocomplete="on" type="text" [(ngModel)]="account.usuario" name="usuario"></ion-input>
       </div>
       <div>
         <ion-input placeholder="Senha" type="password" [(ngModel)]="account.password" name="password"></ion-input>

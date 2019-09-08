@@ -17,26 +17,26 @@
     <div class="font-one">
       <div *ngIf="item.tipoVinho != ''" class="item-info">
         <div class="div-icon">
-          <img class="icon-person" src="../../assets/icon/taca.png" />
+          <img class="icon-person" [src]="iconTipoVinho" />
         </div>
         <span> Tipo de vinho: {{ item.tipoVinho }}</span>
       </div>
       <div *ngIf="item.safra != ''" class="item-info">
         <div class="div-icon">
-          <img class="icon-person" src="../../assets/icon/harvest.png" />
+          <img class="icon-person" [src]="iconSafra" />
         </div>
         <span> Safra: {{ item.safra }}</span>
       </div>
       <div *ngIf="item.teorAlc != ''" class="item-info">
         <div class="div-icon">
-          <img class="icon-person" src="../../assets/icon/teor.png" />
+          <img class="icon-person" [src]="iconTeorAlc" />
         </div>
         <span> Teor Alcóolico: {{ item.teorAlc }}%</span>
       </div>
 
       <div class="item-info">
         <div class="div-icon">
-          <img class="icon-person" src="../../assets/icon/wine-box.png" />
+          <img class="icon-person" [src]="iconQtd" />
         </div>
         <span> Qtd. disponível: {{ item.qtd > 0 ? item.qtd : 0 }}</span>
       </div>
@@ -50,7 +50,7 @@
     >
       <h5 class="item-title">
         <div class="div-icon">
-          <img class="icon-person" src="../../assets/icon/farm.png" />
+          <img class="icon-person" [src]="iconVinicola" />
         </div>
         Vinícola
       </h5>
@@ -68,7 +68,7 @@
     <div *ngIf="uvasSplit != ''" class="item-uva mg-hor" padding>
       <h5 class="item-title">
         <div class="div-icon">
-          <img class="icon-person" src="../../assets/icon/grape2.png" />
+          <img class="icon-person" [src]="iconUva" />
         </div>
         Uvas
       </h5>

@@ -3,6 +3,10 @@ import { IonicPage, NavController, AlertController } from 'ionic-angular';
 
 import { User, Settings } from "../../providers";
 
+
+
+
+
 @IonicPage()
 @Component({
   selector: 'page-welcome',
@@ -22,11 +26,11 @@ export class WelcomePage {
     public navCtrl: NavController, 
     public user: User, 
     public settings: Settings, 
-    private alertCtrl: AlertController) {
-
-      this.settings.setValue("usuario", "");
+    private alertCtrl: AlertController
+    ) 
+    {
       
-     }
+    }
 
   login() {
     this.makeLogin = true;
@@ -65,7 +69,6 @@ export class WelcomePage {
   
   async doLogin() {
     let login = await this.user.login(this.account);
-    
     if(login.token){
       this.settings.setValue("usuario", login);
       this.navCtrl.push('TabsPage');
