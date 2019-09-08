@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Settings } from "../settings/settings";
 @Injectable()
 export class Api {
-  url: string = "http://localhost:8081/api/";
+  url: string = "https://adegavinhoserver.herokuapp.com/api/";
 
   constructor(public http: HttpClient,
     public settings: Settings) {}
