@@ -13,12 +13,10 @@ import { Settings } from "../providers";
   `
 })
 export class MyApp {
-  
   rootPage: any;
-  usuario:any;
+  usuario: any;
 
   @ViewChild(Nav) nav: Nav;
-
 
   constructor(
     private translate: TranslateService,
@@ -33,19 +31,17 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    
+
     this.initTranslate();
   }
 
- 
-
-  async getUser(){
+  async getUser() {
     this.usuario = await this.settings.getValue("usuario");
     console.log(this.usuario);
-    if(this.usuario && this.usuario.token){
+    if (this.usuario && this.usuario.token) {
       // this.rootPage = LoggedPage;
       this.nav.setRoot(LoggedPage);
-    }else{
+    } else {
       this.nav.setRoot(FirstRunPage);
       this.rootPage = FirstRunPage;
     }
@@ -57,21 +53,11 @@ export class MyApp {
     const browserLang = this.translate.getBrowserLang();
 
     if (browserLang) {
-      if (browserLang === "zh") {
-        const browserCultureLang = this.translate.getBrowserCultureLang();
-
-        if (browserCultureLang.match(/-CN|CHS|Hans/i)) {
-          this.translate.use("zh-cmn-Hans");
-        } else if (browserCultureLang.match(/-TW|CHT|Hant/i)) {
-          this.translate.use("zh-cmn-Hant");
-        }
-      } else if (browserLang === "pt") {
+      if (browserLang === "pt" || browserLang === "pt-BR") {
         this.translate.use("pt-br"); // Set your language here
       } else {
-        this.translate.use(this.translate.getBrowserLang());
+        this.translate.use("en");
       }
-    } else {
-      this.translate.use("pt-br"); // Set your language here
     }
 
     this.translate.get(["BACK_BUTTON_TEXT"]).subscribe(values => {

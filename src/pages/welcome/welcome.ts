@@ -5,8 +5,12 @@ import {
   AlertController,
   LoadingController
 } from "ionic-angular";
+import { Network } from "@ionic-native/network";
 
 import { User, Settings } from "../../providers";
+import { App } from "ionic-angular";
+
+import { LoggedPage } from "../";
 
 @IonicPage()
 @Component({
@@ -27,7 +31,9 @@ export class WelcomePage {
     public user: User,
     public settings: Settings,
     private alertCtrl: AlertController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public network: Network,
+    private app: App
   ) {}
 
   login() {
@@ -40,6 +46,12 @@ export class WelcomePage {
     this.makeLogin = false;
     this.makeSignup = true;
     // this.navCtrl.push('SignupPage');
+  }
+
+  verifyConnection() {
+    if (this.network.type == "none") {
+      this.createDefaultAlert("Sem conexão com internet");
+    }
   }
 
   async doSignup() {
@@ -67,7 +79,8 @@ export class WelcomePage {
     loading.dismiss();
     if (login.token) {
       this.settings.setValue("usuario", login);
-      this.navCtrl.push("TabsPage");
+      this.app.getRootNavs()[0].setRoot(LoggedPage);
+      // this.navCtrl.push("TabsPage");
     } else {
       this.createDefaultAlert(login.message);
     }

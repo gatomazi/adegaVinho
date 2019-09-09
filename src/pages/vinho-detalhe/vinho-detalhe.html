@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar  class="font-two" >
+  <ion-navbar class="font-two">
     <ion-title>{{ item.nome }}</ion-title>
   </ion-navbar>
 </ion-header>
@@ -55,8 +55,14 @@
         Vinícola
       </h5>
       <h4>
-        {{ item.produtor
-        }}<span *ngIf="item.produtor != '' && item.regiao != ''">,</span>
+        {{ item.produtor }}
+        <img
+          class="icon-person"
+          style="position: relative"
+          width="22"
+          [src]="item.flag"
+        />
+        <span *ngIf="item.produtor != '' && item.regiao != ''">,</span>
         <small>
           {{ item.regiao }}
           <span *ngIf="item.pais != '' && item.regiao != ''">-</span>

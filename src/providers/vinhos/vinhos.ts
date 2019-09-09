@@ -8,14 +8,13 @@ import { Settings } from "../settings/settings";
 @Injectable()
 export class Vinhos {
   vinhos: Vinho[] = [];
-  usuario:any;
+  usuario: any;
 
   constructor(
-    public api: Api, 
+    public api: Api,
     public storage: Storage,
     public settings: Settings
-    ) {
-      
+  ) {
     // this.getVinhos();
   }
 
@@ -23,11 +22,14 @@ export class Vinhos {
     if (!params) {
       return this.vinhos;
     }
-    
-    return this.vinhos.filter((item) => {
+
+    return this.vinhos.filter(item => {
       for (let key in params) {
         let field = item[key];
-        if (typeof field == 'string' && field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0) {
+        if (
+          typeof field == "string" &&
+          field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0
+        ) {
           return item;
         } else if (field == params[key]) {
           return item;
@@ -55,38 +57,36 @@ export class Vinhos {
     this.vinhos.splice(this.vinhos.indexOf(item), 1);
     this.setAllStorage("vinhos", this.vinhos);
 
-    if (item.id) {
-      await this.api.sendReq("vinhos/" + item.id, "DELETE");
-    }
+    // if (item.id) {
+    //   await this.api.sendReq("vinhos/" + item.id, "DELETE");
+    // }
   }
 
-  async getVinhos(arrVinhos?){
+  async getVinhos(arrVinhos?) {
     let res: any;
-    
-    this.vinhos = []; 
-    if(!arrVinhos){
+
+    this.vinhos = [];
+    if (!arrVinhos) {
       let usuario = await this.getUser();
-      res =  await this.api.sendReq("vinhos/"+usuario.id_usuario, "GET");
-    }else{
+      res = await this.api.sendReq("vinhos/" + usuario.id_usuario, "GET");
+    } else {
       res = arrVinhos;
     }
-    
-    if(res.vinhos){
-      this.vinhos = []; 
+
+    if (res.vinhos) {
+      this.vinhos = [];
       for (let vinho of res.vinhos) {
         this.vinhos.push(new Vinho(vinho));
       }
     }
-    
   }
 
-  async returnVinhos(){
-    
+  async returnVinhos() {
     await this.getVinhos();
     return this.vinhos;
   }
 
-  async getUser(){
+  async getUser() {
     let user = await this.settings.getValue("usuario");
     return user;
   }
@@ -102,9 +102,7 @@ export class Vinhos {
   }
 
   async exportVinhos() {
-    // await this.api.post("vinhos", this.vinhos);
-    console.log("Export items", this.vinhos);
     let res = await this.api.sendReq("vinhos", "POST", this.vinhos);
-    this.getVinhos(res)
+    this.getVinhos(res);
   }
 }

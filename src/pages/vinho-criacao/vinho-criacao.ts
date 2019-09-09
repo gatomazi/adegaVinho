@@ -87,28 +87,28 @@ export class VinhoCriacaoPage {
     }
   }
 
-  updatePicture2() {
-    if (Camera["installed"]()) {
-      this.camera
-        .getPicture({
-          destinationType: this.camera.DestinationType.DATA_URL,
-          targetWidth: 250,
-          targetHeight: 250
-        })
-        .then(
-          data => {
-            this.form.patchValue({
-              imagem: "data:image/jpg;base64," + data
-            });
-          },
-          err => {
-            alert("Unable to take photo");
-          }
-        );
-    } else {
-      this.fileInput.nativeElement.click();
-    }
-  }
+  // updatePicture() {
+  //   if (Camera["installed"]()) {
+  //     this.camera
+  //       .getPicture({
+  //         destinationType: this.camera.DestinationType.DATA_URL,
+  //         targetWidth: 250,
+  //         targetHeight: 250
+  //       })
+  //       .then(
+  //         data => {
+  //           this.form.patchValue({
+  //             imagem: "data:image/jpg;base64," + data
+  //           });
+  //         },
+  //         err => {
+  //           alert("Unable to take photo");
+  //         }
+  //       );
+  //   } else {
+  //     this.fileInput.nativeElement.click();
+  //   }
+  // }
 
   updatePicture() {
     let actionSheet;
@@ -121,12 +121,12 @@ export class VinhoCriacaoPage {
             this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
           }
         },
-        {
-          text: "Escolher da biblioteca sem camera",
-          handler: () => {
-            this.fileInput.nativeElement.click();
-          }
-        },
+        // {
+        //   text: "Escolher da biblioteca sem camera",
+        //   handler: () => {
+        //     this.fileInput.nativeElement.click();
+        //   }
+        // },
         {
           text: "Usar a câmera",
           handler: () => {
