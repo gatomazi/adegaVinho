@@ -8,7 +8,7 @@ export const MainPage = "WelcomePage";
 export const FirstRunPage = MainPage;
 export const LoggedPage = "TabsPage";
 
-// The initial root pages for our tabs (remove if not using tabs)
+// The initial root pages for our tabs
 export const Tab1Root = "VinhosPage";
 export const Tab2Root = "SettingsPage";
 export const Tab3Root = "WelcomePage";

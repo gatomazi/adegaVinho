@@ -1,19 +1,19 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, AlertController } from 'ionic-angular';
+import { Component } from "@angular/core";
+import {
+  IonicPage,
+  NavController,
+  AlertController,
+  LoadingController
+} from "ionic-angular";
 
 import { User, Settings } from "../../providers";
 
-
-
-
-
 @IonicPage()
 @Component({
-  selector: 'page-welcome',
-  templateUrl: 'welcome.html'
+  selector: "page-welcome",
+  templateUrl: "welcome.html"
 })
 export class WelcomePage {
-
   account: { nome: string; usuario: string; password: string } = {
     nome: "",
     usuario: "",
@@ -23,21 +23,19 @@ export class WelcomePage {
   makeLogin: boolean = false;
   makeSignup: boolean = false;
   constructor(
-    public navCtrl: NavController, 
-    public user: User, 
-    public settings: Settings, 
-    private alertCtrl: AlertController
-    ) 
-    {
-      
-    }
+    public navCtrl: NavController,
+    public user: User,
+    public settings: Settings,
+    private alertCtrl: AlertController,
+    public loadingCtrl: LoadingController
+  ) {}
 
   login() {
     this.makeLogin = true;
     this.makeSignup = false;
     // this.navCtrl.push('LoginPage');
   }
-  
+
   signup() {
     this.makeLogin = false;
     this.makeSignup = true;
@@ -46,39 +44,42 @@ export class WelcomePage {
 
   async doSignup() {
     let signup = await this.user.signup(this.account);
-    if(signup.id){
+    if (signup.id) {
       this.account.nome = "";
       this.account.usuario = "";
       this.account.password = "";
-      let alert = this.alertCtrl.create({
-        title: "Usuário cadastrado com sucesso",
-        // subTitle: '10% of battery remaining',
-        buttons: ['Fechar']
-      });
-      alert.present();
+
+      this.createDefaultAlert("Usuário cadastrado com sucesso");
       this.login();
-    }else{
-      let alert = this.alertCtrl.create({
-        title: signup.message,
-        // subTitle: '10% of battery remaining',
-        buttons: ['Fechar']
-      });
-      alert.present();
+    } else {
+      this.createDefaultAlert(signup.message);
     }
   }
-  
+
   async doLogin() {
+    let loading = this.loadingCtrl.create({
+      content: "Verificando credenciais"
+    });
+
+    loading.present();
     let login = await this.user.login(this.account);
-    if(login.token){
+
+    loading.dismiss();
+    if (login.token) {
       this.settings.setValue("usuario", login);
-      this.navCtrl.push('TabsPage');
-    }else{
-      let alert = this.alertCtrl.create({
-        title: login.message,
-        // subTitle: '10% of battery remaining',
-        buttons: ['Fechar']
-      });
-      alert.present();
+      this.navCtrl.push("TabsPage");
+    } else {
+      this.createDefaultAlert(login.message);
     }
+  }
+
+  createDefaultAlert(text: string, txtCancelBtn: string = "Fechar") {
+    let alert = this.alertCtrl.create({
+      title: text,
+      buttons: ["Fechar"]
+    });
+
+    alert.present();
+    return alert;
   }
 }
