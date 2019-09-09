@@ -2,6 +2,6 @@
 
 Aplicação para controle de adega pessoal
 
-![App](https://i.imgur.com/KbiuM3g.gif)
+![Sample Gif](https://i.imgur.com/KbiuM3g.gif) +<img src="/art/sample.gif?raw=true" width="200px">
 
 Built with **Ionic v3**
